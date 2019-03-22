@@ -27,7 +27,7 @@ def main();
         try:
             #start scan
             hat.a_in_scan_start(channel_mask, samples_per_channel, scan_rate, options)
-            
+
             #perform scan
             read_result = hat.a_in_scan_read(read_request_size, timeout)
 
@@ -43,7 +43,7 @@ def main();
 
             sleep(0.1)
             print('\n')
-            
+
         except KeyboardInterrupt:
             # Clear the '^C' from the display
             print(CURSOR_BACK_2, ERASE_TO_END_OF_LINE, '\n')
