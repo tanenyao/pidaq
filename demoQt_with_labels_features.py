@@ -115,7 +115,7 @@ class AudioStream(object):
 	                         ) * 2 / (0.6 * self.sample_size)
 	        self.set_plotdata(name='spectrum', data_x=self.f, data_y=sp_data)
 
-		indexes = peakutils.indexes(sp_data, thres = 0.02/max(sp_data), min_dist= 100)
+		indexes = peakutils.indexes(sp_data, thres = 0.02/max(sp_data), min_dist= 20)
 		indexes = np.array(indexes)
 
 		# calculates waveform rms
