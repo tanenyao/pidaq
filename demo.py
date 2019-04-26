@@ -1,10 +1,11 @@
-import time
+#!/usr/bin/env python
 
 delay = 3
 
 while True:
 
 	# start time
+	import time
 	t = time.time()
 
 	'''-------------------------------------------------------M C C 1 1 8   S C A N-----------------------------------------------------'''
@@ -64,13 +65,26 @@ while True:
 
 		'''---------------------------------------------------------F T P------------------------------------------------------------'''
 
-		from csvfx import csv_add
-		from ftpfx import ftp_upload
+		import csv
+		import ftplib
+
+		def csv_add(filename, list):
+			csv_file = open(filename, 'w')
+			for e in list:
+				writer = csv.writer(csv_file)
+				writer.writerow(e)
+			csv_file.close()
+
+		def ftp_upload(server_ip, user, passwd, filename):
+			session = ftplib.FTP(server_ip, user, passwd)
+			file = open(filename, 'rb')
+			session.storbinary("STOR " + filename, file)
+			file.close()
+			session.quit()
 
 		filename = 'demo.csv'
 		features = [[rms_val], [max_val], [min_val], peak_x, peak_y, peak_range]
 		csv_add(filename, features)
-
 
 		ip_addr = '169.254.111.227'
 		usr = 'watts'
